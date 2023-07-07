@@ -17,6 +17,7 @@ import { useForm } from 'react-hook-form';
 import { Textarea } from './textarea';
 import { updateUser, useUserById, useUsers } from '@/lib/services/user.service';
 import { UsersResponse } from '@/lib/interfaces/user.interface';
+import { useToast } from './use-toast';
 
 interface Props {
   user: UsersResponse;
@@ -24,6 +25,7 @@ interface Props {
 
 const EditForm: FC<Props> = ({ user }) => {
   const { mutate } = useUsers();
+  const { toast } = useToast();
 
   const {
     register,
@@ -47,9 +49,10 @@ const EditForm: FC<Props> = ({ user }) => {
     try {
       const res = await updateUser(user.id, data);
       await mutate();
-      console.log(res);
-
-      console.log(res);
+      toast({
+        title: 'Usuario actualizado',
+        description: `El usuario ${res.data.names} ${res.data.lastNames} ha sido actualizado correctamente`,
+      });
     } catch (error: any) {
       console.log(error.response.data.message);
     }

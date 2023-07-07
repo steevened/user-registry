@@ -13,6 +13,7 @@ import { Button } from '@/components/ui/button';
 import { deleteUser, useUsers } from '@/lib/services/user.service';
 import { Trash2 } from 'lucide-react';
 import { FC } from 'react';
+import { useToast } from './use-toast';
 
 interface Props {
   id: string;
@@ -20,11 +21,15 @@ interface Props {
 
 const DeleteModal: FC<Props> = ({ id }) => {
   const { mutate } = useUsers();
+  const { toast } = useToast();
 
   const handleDelete = async () => {
     const res = await deleteUser(id);
     mutate();
     console.log(res);
+    toast({
+      description: 'Eliminado correctamente.',
+    });
   };
 
   return (

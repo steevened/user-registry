@@ -1,19 +1,8 @@
 import { useUsers } from '@/lib/services/user.service';
 import Navbar from '../components/ui/navbar';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Edit, Trash2 } from 'lucide-react';
 import UserCardItem from '@/components/ui/userCardItem';
 import Head from 'next/head';
+import { Toaster } from '@/components/ui/toaster';
 
 export default function Home() {
   const { data, isLoading, error } = useUsers();
@@ -35,6 +24,7 @@ export default function Home() {
           ))}
         </ul>
       </main>
+      <Toaster />
     </>
   );
 }

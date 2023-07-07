@@ -17,11 +17,14 @@ import { Textarea } from './textarea';
 import { useForm } from 'react-hook-form';
 import { UserDto } from '@/lib/interfaces/dto/user-dto.interface';
 import { createUser, useUsers } from '@/lib/services/user.service';
+import { useToast } from './use-toast';
 
 interface AddUserProps {}
 
 const AddUser: FC<AddUserProps> = ({}) => {
   const { mutate } = useUsers();
+
+  const { toast } = useToast();
 
   const {
     register,
@@ -44,8 +47,11 @@ const AddUser: FC<AddUserProps> = ({}) => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       const res = await createUser(data);
-      mutate();
+      await mutate();
       reset();
+      toast({
+        description: 'Añadido correctamente.',
+      });
     } catch (error: any) {
       console.log(error.response.data.message);
     }
