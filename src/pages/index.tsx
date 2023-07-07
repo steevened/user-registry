@@ -15,11 +15,11 @@ import { Edit, Trash2 } from 'lucide-react';
 import UserCardItem from '@/components/ui/userCardItem';
 
 export default function Home() {
-  const { data, isLoading, isError } = useUsers();
+  const { data, isLoading, error } = useUsers();
 
   if (isLoading) return <div>Loading...</div>;
 
-  if (isError) return <div>Error...</div>;
+  if (error) return <div>Error...</div>;
 
   return (
     <main className="min-h-screen">

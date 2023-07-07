@@ -9,13 +9,30 @@ export function useUsers() {
   return {
     data,
     isLoading,
-    isError: error,
+    error,
     mutate,
+  };
+}
+
+export function useUserById(id: string) {
+  const { data, error, isLoading, mutate } = useSWR<UsersResponse>(
+    id ? `users/${id}` : null
+  );
+
+  return {
+    data,
+    isLoading,
+    error,
   };
 }
 
 export async function createUser(data: UserDto) {
   const res = await axiosInstance.post('/users', data);
+  return res;
+}
+
+export async function updateUser(id: string, data: UserDto) {
+  const res = await axiosInstance.patch(`/users/${id}`, data);
   return res;
 }
 

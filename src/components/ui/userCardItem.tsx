@@ -13,6 +13,7 @@ import { Button } from './button';
 import { UsersResponse } from '@/lib/interfaces/user.interface';
 import { Label } from './label';
 import DeleteModal from './DeleteModal';
+import EditForm from './EditForm';
 
 interface UserCardItemProps {
   user: UsersResponse;
@@ -39,25 +40,25 @@ const UserCardItem: FC<UserCardItemProps> = ({ user }) => {
                 disabled
               />
             </div>
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="dni">
-                Documento de Identificación / Pasaporte
-              </Label>
-              <Input
-                id="dni"
-                placeholder="Documento de Identificación / Pasaporte"
-                value={user.dniNumber}
-                disabled
-              />
-            </div>
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="cellphone">Teléfono de contacto</Label>
-              <Input
-                id="cellphone"
-                placeholder="Teléfono de contacto / Celular"
-                value={user.cellphone}
-                disabled
-              />
+            <div className="flex flex-col items-end gap-4 md:flex-row">
+              <div className="flex flex-col space-y-1.5 w-full  h-full">
+                <Label htmlFor="dni">N. Identificación / Pasaporte</Label>
+                <Input
+                  id="dni"
+                  placeholder="Documento de Identificación / Pasaporte"
+                  value={user.dniNumber}
+                  disabled
+                />
+              </div>
+              <div className="flex flex-col space-y-1.5  w-full  h-full">
+                <Label htmlFor="cellphone">Teléfono de contacto</Label>
+                <Input
+                  id="cellphone"
+                  placeholder="Teléfono de contacto / Celular"
+                  value={user.cellphone}
+                  disabled
+                />
+              </div>
             </div>
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="address">Dirección de domicilio</Label>
@@ -73,9 +74,7 @@ const UserCardItem: FC<UserCardItemProps> = ({ user }) => {
       </CardContent>
       <CardFooter className="flex justify-end gap-5">
         <DeleteModal id={user.id} />
-        <Button size="icon">
-          <Edit size={20} />
-        </Button>
+        <EditForm id={user.id} />
       </CardFooter>
     </Card>
   );
