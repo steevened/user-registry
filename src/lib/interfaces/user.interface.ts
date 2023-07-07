@@ -4,7 +4,7 @@ export interface UsersResponse {
   id: string;
   names: string;
   lastNames: string;
-  dniNumber: number;
+  dniNumber: string;
   email: string;
   cellphone: string;
   address: string;

@@ -23,6 +23,7 @@ export function useUserById(id: string) {
     data,
     isLoading,
     error,
+    mutate,
   };
 }
 

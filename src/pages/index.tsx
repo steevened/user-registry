@@ -13,6 +13,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Edit, Trash2 } from 'lucide-react';
 import UserCardItem from '@/components/ui/userCardItem';
+import Head from 'next/head';
 
 export default function Home() {
   const { data, isLoading, error } = useUsers();
@@ -22,13 +23,18 @@ export default function Home() {
   if (error) return <div>Error...</div>;
 
   return (
-    <main className="min-h-screen">
-      <Navbar />
-      <ul className="container grid grid-cols-1 gap-5 mx-auto py-28 md:grid-cols-2">
-        {data?.map((user) => (
-          <UserCardItem key={user.id} user={user} />
-        ))}
-      </ul>
-    </main>
+    <>
+      <Head>
+        <title>Registro de usuarios</title>
+      </Head>
+      <main className="min-h-screen">
+        <Navbar />
+        <ul className="container grid grid-cols-1 gap-5 mx-auto py-28 md:grid-cols-2">
+          {data?.map((user) => (
+            <UserCardItem key={user.id} user={user} />
+          ))}
+        </ul>
+      </main>
+    </>
   );
 }

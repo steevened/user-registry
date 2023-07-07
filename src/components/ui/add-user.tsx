@@ -32,7 +32,7 @@ const AddUser: FC<AddUserProps> = ({}) => {
   } = useForm<UserDto>({
     defaultValues: {
       address: '',
-      dniNumber: null,
+      dniNumber: '',
       email: '',
       lastNames: '',
       cellphone: '',
@@ -43,11 +43,9 @@ const AddUser: FC<AddUserProps> = ({}) => {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      const res = await createUser({
-        ...data,
-        dniNumber: Number(data.dniNumber),
-      });
+      const res = await createUser(data);
       mutate();
+      reset();
     } catch (error: any) {
       console.log(error.response.data.message);
     }
@@ -111,7 +109,10 @@ const AddUser: FC<AddUserProps> = ({}) => {
               </Label>
               <div className="col-span-3">
                 <Input
-                  {...register('email', { required: true })}
+                  {...register('email', {
+                    required: true,
+                    pattern: /\S+@\S+\.\S+/,
+                  })}
                   type="email"
                   id="email"
                   placeholder="Agregar correo electrónico"
@@ -129,7 +130,7 @@ const AddUser: FC<AddUserProps> = ({}) => {
               </Label>
               <div className="col-span-3">
                 <Input
-                  {...register('dniNumber', { required: true })}
+                  {...register('dniNumber', { required: true, minLength: 5 })}
                   type="number"
                   id="dniNumber"
                   placeholder="Agregar Número de identificación"
@@ -147,7 +148,7 @@ const AddUser: FC<AddUserProps> = ({}) => {
               </Label>
               <div className="col-span-3">
                 <Input
-                  {...register('cellphone', { required: true })}
+                  {...register('cellphone', { required: true, minLength: 5 })}
                   id="cellphone"
                   placeholder="Agregar número de celular"
                 />
@@ -164,7 +165,7 @@ const AddUser: FC<AddUserProps> = ({}) => {
               </Label>
               <div className="col-span-3">
                 <Input
-                  {...register('address', { required: true })}
+                  {...register('address', { required: true, minLength: 2 })}
                   id="address"
                   placeholder="Agregar dirección de domicilio"
                 />

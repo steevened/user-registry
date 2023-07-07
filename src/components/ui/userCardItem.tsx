@@ -7,9 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from './card';
-import { Trash2, Edit } from 'lucide-react';
 import { Input } from './input';
-import { Button } from './button';
 import { UsersResponse } from '@/lib/interfaces/user.interface';
 import { Label } from './label';
 import DeleteModal from './DeleteModal';
@@ -42,7 +40,7 @@ const UserCardItem: FC<UserCardItemProps> = ({ user }) => {
             </div>
             <div className="flex flex-col items-end gap-4 md:flex-row">
               <div className="flex flex-col space-y-1.5 w-full  h-full">
-                <Label htmlFor="dni">N. Identificación / Pasaporte</Label>
+                <Label htmlFor="dni">N. Identificación </Label>
                 <Input
                   id="dni"
                   placeholder="Documento de Identificación / Pasaporte"
@@ -74,7 +72,7 @@ const UserCardItem: FC<UserCardItemProps> = ({ user }) => {
       </CardContent>
       <CardFooter className="flex justify-end gap-5">
         <DeleteModal id={user.id} />
-        <EditForm id={user.id} />
+        <EditForm user={user} />
       </CardFooter>
     </Card>
   );
