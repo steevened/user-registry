@@ -4,7 +4,7 @@ import { UserDto } from '../interfaces/dto/user-dto.interface';
 import { axiosInstance } from '../fetcher';
 
 export function useUsers() {
-  const { data, error, isLoading, mutate } = useSWR<UsersResponse[]>('users');
+  const { data, error, isLoading, mutate } = useSWR<UsersResponse[]>('/users');
 
   return {
     data,
@@ -16,7 +16,7 @@ export function useUsers() {
 
 export function useUserById(id: string) {
   const { data, error, isLoading, mutate } = useSWR<UsersResponse>(
-    id ? `users/${id}` : null
+    id ? `/users/${id}` : null
   );
 
   return {

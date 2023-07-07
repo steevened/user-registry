@@ -5,7 +5,7 @@ const nextConfig = {
     BASE_URL:
       process.env.NODE_ENV === 'development'
         ? 'http://localhost:3000/api'
-        : 'https://api.themoviedb.org/3/',
+        : 'https://users-registry.up.railway.app/api',
   },
 };
 
