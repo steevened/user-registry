@@ -18,3 +18,8 @@ export async function createUser(data: UserDto) {
   const res = await axiosInstance.post('/users', data);
   return res;
 }
+
+export async function deleteUser(id: string) {
+  const res = await axiosInstance.delete(`/users/${id}`);
+  return res;
+}
