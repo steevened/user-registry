@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <Navbar />
-      <ul className="container grid grid-cols-1 gap-5 mx-auto mt-10 md:grid-cols-2">
+      <ul className="container grid grid-cols-1 gap-5 mx-auto py-28 md:grid-cols-2">
         {data?.map((user) => (
           <Card key={user.id}>
             <CardHeader>

@@ -7,7 +7,7 @@ interface navbarProps {}
 
 const Navbar: FC<navbarProps> = ({}) => {
   return (
-    <header className="py-4 border-b shadow border-stone-900/10 dark:border-stone-50/10">
+    <header className="fixed inset-x-0 py-4 border-b shadow border-stone-900/10 dark:border-stone-50/10 bg-stone-50/60 backdrop-blur dark:bg-stone-950/80">
       <div className="container flex items-center justify-between mx-auto">
         <Link href="/">
           <h1 className="text-xl font-bold">REGISTRO DE USUARIOS</h1>
